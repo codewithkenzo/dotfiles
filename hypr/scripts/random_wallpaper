@@ -1,0 +1,13 @@
+
+#!/bin/bash
+
+# Directory containing wallpapers
+WALLPAPER_DIR="/home/kenzo/Pictures/filter-walls/"
+
+# Select a random file from the wallpaper directory
+WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+
+# Set the wallpaper using swww
+swww img "$WALLPAPER"
+
+

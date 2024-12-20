@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==2{print $2}')
+
+# Waybar performance
+WAYBAR_FILE="$HOME/.config/waybar/style.css"
+
+# Uncomment animation lines and replace linear-gradient with solid black color
+sed -i 's/\/\* \(.*animation:.*\) \*\//\1/g' $WAYBAR_FILE
+sed -i 's/linear-gradient([^)]*)/#000000/g' $WAYBAR_FILE
+
+if [ "$HYPRGAMEMODE" = 1 ]; then
+  # Comment out animation lines
+  sed -i 's/^\(.*animation:.*\)$/\/\* \1 \*\//g' $WAYBAR_FILE
+  # Replace linear-gradient with solid black color for performance mode
+  sed -i 's/linear-gradient([^)]*)/#000000/g' $WAYBAR_FILE
+fi
+
+killall waybar
+waybar >/dev/null 2>&1 &
+
+# Hyprland performance
+HYPR_FILE="$HOME/.config/hypr/hyprland.conf"
+
+if [ "$HYPRGAMEMODE" = 1 ]; then
+  # Replace gradients with solid black color in Hyprland config
+  sed -i 's/\(\$color[0-9]\+\s\)\+\([0-9]\+deg\)/#000000/g' $HYPR_FILE
+
+  hyprctl --batch "\
+        keyword animations:enabled 0;\
+        keyword decoration:drop_shadow 0;\
+        keyword decoration:blur:enabled 0;\
+        keyword general:gaps_in 0;\
+        keyword general:gaps_out 0;\
+        keyword general:border_size 1;\
+        keyword decoration:rounding 0"
+  exit
+fi
+
+hyprctl reload >/dev/null 2>&1 &

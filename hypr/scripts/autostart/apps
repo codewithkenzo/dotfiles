@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Apps
+#spotify &
+#firefox &
+vesktop.desktop &
+thunderbird &
+kdeconnect &
+md.Obsidian &
+
+# Terminal Apps
+kitty --class btop btop &
+kitty --class nvtop nvtop &
+kitty --override font_size=15 --class spotify_player spotify_player &
+kitty --override font_size=18 --class taskell taskell &
+kitty --override font_size=14 --class nvim nvim &
+kitty --override font_size=14 --class ani-cli ani-cli &
+kitty --override font_size=14 --class cava cava &
