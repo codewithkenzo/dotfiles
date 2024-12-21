@@ -6,7 +6,6 @@ command = "pavucontrol"
 unfocus = "hide"
 position = "1% 8%"
 lazy = true
-force_monitor = "HDMI-A-3"
 
 [scratchpads.terminal]
 command = "kitty --class scratchpad-large"
@@ -54,8 +53,8 @@ margin = 20
 lazy = true
 
 [wallpapers]
-path = "~/Pictures/filter-walls/"
-interval = 60                                                                                                                                                                                               # change every hour
+path = "/home/kenzo/Pictures/filter-walls/"
+interval = 60 # change every hour
 command = "swww img --transition-bezier 0.5,1.19,.8,.4 --transition-type wipe --transition-duration 2 --transition-fps 120 \"[file]\" && notify-send 'Wallpaper Changed' -i \"[file]\" --app-name=Wallpaper"
 clear_command = "swww clear"
 extensions = ["jpg", "png", "gif", "jpeg"]
